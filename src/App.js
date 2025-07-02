@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import { Board } from './components';
+import { GameHistory } from './components';
 
 const Game = () => {
   const [xIsNext, setXIsNext] = useState(true);
@@ -20,6 +21,10 @@ const Game = () => {
           squares={currentSquares}
           onPlay={handlePlay}
         />
+      </div>
+
+      <div className="game-history">
+        <GameHistory history={history} />
       </div>
     </div>
   </>;
