@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import './Board.css';
 
 import { Square } from '../';
@@ -7,13 +5,8 @@ import { Square } from '../';
 import { handleWinner } from '../../utils/utilities';
 
 
-export const Board = () => {
-  const [squares, setSquares] = useState(Array(9).fill(null));
-  const [xIsNext, setXIsNext] = useState(true);
-
+export const Board = ({ xIsNext, squares, onPlay }) => {
   const handleNextPlayer = () => {
-    setXIsNext(!xIsNext);
-    
     return xIsNext ? 'X' : 'O';
   }
 
@@ -24,7 +17,7 @@ export const Board = () => {
     
     nextSquares[index] = handleNextPlayer();
     
-    setSquares(nextSquares);
+    onPlay(nextSquares);
   }
 
   const winner = handleWinner(squares);
@@ -33,7 +26,7 @@ export const Board = () => {
   status = winner ? `Winner: ${winner}` : `Next player: ${xIsNext ? 'X' : 'O'}`; 
 
 	return <>
-    <div className='status'>
+    <div className="status">
       {status}
     </div>
 
